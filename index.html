@@ -151,14 +151,11 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(201,138,0,0.18);
     }
-    .nav-logo {
-      font-family: var(--ff-display);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.02em;
+    .nav-logo img {
+      height: 56px;
+      width: auto;
+      display: block;
     }
-    .nav-logo span { color: var(--gold); }
 
     .nav-links {
       display: flex;
@@ -1027,7 +1024,7 @@
 
 <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
 <nav>
-  <div class="nav-logo">Zidi <span>Learn</span></div>
+  <div class="nav-logo"><img src="zidi-logo-B-bars-right-light.svg" alt="Zidi Learn"></div>
   <div class="nav-links">
     <a href="#subjects">Subjects</a>
     <a href="#pricing">Pricing</a>
@@ -1985,7 +1982,15 @@
 
   // ── Step navigation ──
   function go(from, to) {
-    // Validation
+    // If going back, skip validation entirely
+    if (to < from) {
+      document.getElementById('fstep' + from).classList.remove('active');
+      document.getElementById('fstep' + to).classList.add('active');
+      updateProgress(to);
+      document.getElementById('enrol').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    // Validation (forward only)
     if (from === 1 && !S.learnerType) { alert('Please choose who this is for.'); return; }
     if (from === 2) {
       if (!S.subject) { alert('Please choose a subject.'); return; }
@@ -2156,7 +2161,7 @@
     // Tutor available 8am–10pm WAT (WAT = UTC+1)
     // WAT hours: 8 to 22 (inclusive start, so 8,9,...,21 = 14 slots)
     const watStart = 8;
-    const watEnd = 22; // last slot starts at 21 (9pm WAT)
+    const watEnd = 23; // last slot starts at 22 (10pm WAT)
 
     // Offset between WAT and user timezone:
     // watHour = localHour + (1 - utcOffset)
