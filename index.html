@@ -151,10 +151,37 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(201,138,0,0.18);
     }
-    .nav-logo img {
-      height: 56px;
-      width: auto;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      font-size: 1.7rem; /* sets the cap unit context to match .logo-text */
+      font-family: var(--ff-display);
+      font-weight: 700;
+    }
+    .logo-bars span {
       display: block;
+      width: 8px;
+      border-radius: 2px;
+      background: var(--gold);
+    }
+    .logo-bars span:nth-child(1) { height: 0.25cap; }
+    .logo-bars span:nth-child(2) { height: 0.5cap;  }
+    .logo-bars span:nth-child(3) { height: 0.75cap; }
+    .logo-bars span:nth-child(4) { height: 1cap;    }
+    .logo-text {
+      font-family: var(--ff-display);
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      line-height: 1;
     }
 
     .nav-links {
@@ -1024,7 +1051,12 @@
 
 <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
 <nav>
-  <div class="nav-logo"><img src="zidi-logo-B-bars-right-light.svg" alt="Zidi Learn"></div>
+  <a href="#" class="nav-logo">
+    <div class="logo-bars">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <span class="logo-text">ZIDI</span>
+  </a>
   <div class="nav-links">
     <a href="#subjects">Subjects</a>
     <a href="#pricing">Pricing</a>
